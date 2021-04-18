@@ -26,20 +26,20 @@ parser.add_argument('-v', '--verbose', dest='verbose', action='store_true', defa
 args = parser.parse_args()
 
 cookies = {}
-if args.cookies is not None:
+if args.cookies is not None and args.cookies:
     for cookie in args.cookies.replace("  "," ").replace("; ", ";").split(";"):
         c = cookie.split('=', 1)
         cookies[c[0]] = c[1]
 
 headers = {}
-if args.headers is not None:
+if args.headers is not None and args.headers:
     for header in args.headers.replace("  "," ").replace("; ", ";").split(";"):
         h = header.split('=', 1)
         headers[h[0]] = h[1]
 
 replaceString = args.replace
 
-is_post = args.post is not None
+is_post = args.post is not None and args.post
 post_data = {}
 if is_post:
     for pd in args.post.replace("  ", " ").replace("; ", ";").split(";"):
