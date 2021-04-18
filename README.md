@@ -1,7 +1,7 @@
 # Web Payloads Scanner
 
 Example usage:
-`webPayloadsScanner.py -u https://example.com?parameter={payload}  -p payloads.txt`
+`./webPayloadsScanner.py -u https://example.com?parameter={payload}  -p payloads.txt`
 
 Help:
 
