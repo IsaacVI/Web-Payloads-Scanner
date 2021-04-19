@@ -25,26 +25,25 @@ parser.add_argument('-v', '--verbose', dest='verbose', action='store_true', defa
 
 args = parser.parse_args()
 
+
+def format_complex_argument(dataString, dictOut):
+    if dataString is not None and dataString:
+        for data in dataString.replace("  ", " ").replace("; ", ";").split(";"):
+            d = data.split('=', 1)
+            dictOut[d[0]] = d[1]
+
+
 cookies = {}
-if args.cookies is not None and args.cookies:
-    for cookie in args.cookies.replace("  "," ").replace("; ", ";").split(";"):
-        c = cookie.split('=', 1)
-        cookies[c[0]] = c[1]
+format_complex_argument(args.cookies, cookies)
 
 headers = {}
-if args.headers is not None and args.headers:
-    for header in args.headers.replace("  "," ").replace("; ", ";").split(";"):
-        h = header.split('=', 1)
-        headers[h[0]] = h[1]
+format_complex_argument(args.headers, headers)
 
 replaceString = args.replace
 
 is_post = args.post is not None and args.post
 post_data = {}
-if is_post:
-    for pd in args.post.replace("  ", " ").replace("; ", ";").split(";"):
-        p = pd.split('=', 1)
-        post_data[p[0]] = p[1]
+format_complex_argument(args.post, post_data)
 
 verbose = args.verbose
 advance_length = args.advance_length
